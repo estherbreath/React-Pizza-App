@@ -64,14 +64,14 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      {numPizzas > 0 && (
+      {numPizzas > 0 ? (
         <ul className="pizzas">
           {/*Creating list element  instead of one by one pizza component*/}
           {pizzas.map((pizza) => (
             <Pizza pizzaobj={pizza} key={pizza.name} />
           ))}
         </ul>
-      )}
+      ) : null}
       {/* <Pizza 
       name="Pizza Spinaci"
       ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
@@ -115,7 +115,7 @@ function Header() {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 20;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
@@ -125,11 +125,15 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {isOpen && (
+      {isOpen ? (
         <div className="order">
-          <p>We're open until {closeHour}:00. Come vistt or order online </p>
+          <p>We're open until {closeHour}:00. Come visit or order online</p>
           <button className="btn">Order</button>
         </div>
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+        </p>
       )}
     </footer>
   );
