@@ -58,17 +58,20 @@ function App() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  // const pizzas = [];
+  const numPizzas = pizzas.length;
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-
-      <ul className="pizzas">
-        {" "}
-        {/*Creating list element  instead of one by one pizza component*/}
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaobj={pizza} key={pizza.name} />
-        ))}
-      </ul>
+      {numPizzas > 0 && (
+        <ul className="pizzas">
+          {/*Creating list element  instead of one by one pizza component*/}
+          {pizzas.map((pizza) => (
+            <Pizza pizzaobj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )}
       {/* <Pizza 
       name="Pizza Spinaci"
       ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
@@ -112,7 +115,7 @@ function Header() {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 20;
+  const openHour = 12;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
@@ -123,7 +126,10 @@ function Footer() {
   return (
     <footer className="footer">
       {isOpen && (
-        <p>We're open until {closeHour} :00. Come vistt or order online </p>
+        <div className="order">
+          <p>We're open until {closeHour}:00. Come vistt or order online </p>
+          <button className="btn">Order</button>
+        </div>
       )}
     </footer>
   );
