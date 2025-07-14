@@ -53,6 +53,23 @@ function App() {
       <Header />
       <Menu />
       <Footer />
+      <Example />
+    </div>
+  );
+}
+
+function Example() {
+  return <Welcome name="Esther" age="20" location="Kaduna" />;
+}
+
+function Welcome(props) {
+  return (
+    <div>
+      <h1>Hello, {props.name} How may we help you?</h1>;
+      <h2>
+        {props.name} is {props.age} years old and you live in {props.location}
+      </h2>
+      ;<p>{props.name}, kindly go through our menu</p>;
     </div>
   );
 }
