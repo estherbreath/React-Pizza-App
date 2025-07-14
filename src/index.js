@@ -53,26 +53,26 @@ function App() {
       <Header />
       <Menu />
       <Footer />
-      <Example />
+      {/* <Example /> */}
     </div>
   );
 }
 
-function Example() {
-  return <Welcome name="Esther" age="20" location="Kaduna" />;
-}
+// function Example() {
+//   return <Welcome name="Esther" age="20" location="Kaduna" />;
+// }
 
-function Welcome(props) {
-  return (
-    <div>
-      <h1>Hello, {props.name} How may we help you?</h1>;
-      <h2>
-        {props.name} is {props.age} years old and you live in {props.location}
-      </h2>
-      ;<p>{props.name}, kindly go through our menu</p>;
-    </div>
-  );
-}
+// function Welcome(props) {
+//   return (
+//     <div>
+//       <h1>Hello, {props.name} How may we help you?</h1>;
+//       <h2>
+//         {props.name} is {props.age} years old and you live in {props.location}
+//       </h2>
+//       ;<p>{props.name}, kindly go through our menu</p>;
+//     </div>
+//   );
+// }
 
 function Menu() {
   const pizzas = pizzaData;
@@ -108,6 +108,9 @@ function Menu() {
 
 function Pizza(props) {
   console.log(props);
+
+  if (props.pizzaobj.soldOut) return null;
+
   return (
     <li className="pizza">
       <img src={props.pizzaobj.photoName} alt={props.pizzaobj.name} />;
@@ -132,13 +135,20 @@ function Header() {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 20;
+  const openHour = 12;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
 
   // if(hour >= openHour && hour <= closeHour) alert("We're currently open");
   // else alert("Sorry,we're closed");
+
+  if (!isOpen)
+    return (
+      <p>
+        We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+      </p>
+    );
 
   return (
     <footer className="footer">
